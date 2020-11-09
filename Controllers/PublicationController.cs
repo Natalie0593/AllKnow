@@ -72,26 +72,27 @@ namespace BlogHost.Controllers
             if (ModelState.IsValid)
             {
                 byte[] imageData = null;
-            // считываем переданный файл в массив байтов
-            using (var binaryReader = new BinaryReader(model.AvatarPost.OpenReadStream()))
-            {
-                imageData = binaryReader.ReadBytes((int)model.AvatarPost.Length);
-            }
-            
-                string a = _userManager.GetUserId(User);
-            Publication publ = new Publication {
-                PublicationName = model.PublicationName,
-                Discription = model.Discription,
-                PublicationText = model.PublicationText,
-                AvatarPost = imageData,
-                isFavorite = model.isFavorite,
-                TopicId = _topic.GetTopicDB(model.TopicName).Id,
-                Topic = _topic.GetTopicDB(model.TopicName),
-                User = _user.GetUserDB(_userManager.GetUserId(User)),
-            };
+                // считываем переданный файл в массив байтов
+                using (var binaryReader = new BinaryReader(model.AvatarPost.OpenReadStream()))
+                {
+                    imageData = binaryReader.ReadBytes((int)model.AvatarPost.Length);
+                }
 
-            _publication.AddPublicationDB(publ);
-            return RedirectToAction("AllPosts");
+                string a = _userManager.GetUserId(User);
+                Publication publ = new Publication
+                {
+                    PublicationName = model.PublicationName,
+                    Discription = model.Discription,
+                    PublicationText = model.PublicationText,
+                    AvatarPost = imageData,
+                    isFavorite = model.isFavorite,
+                    TopicId = _topic.GetTopicDB(model.TopicName).Id,
+                    Topic = _topic.GetTopicDB(model.TopicName),
+                    User = _user.GetUserDB(_userManager.GetUserId(User)),
+                };
+
+                _publication.AddPublicationDB(publ);
+                return RedirectToAction("AllPosts");
             }
             return View(model);
         }
