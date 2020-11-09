@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using BlogHost.Initializer;
 using System.IO;
+using BlogHost.Data;
 
 namespace BlogHost.Controllers
 {
@@ -18,6 +19,7 @@ namespace BlogHost.Controllers
         private readonly IUser _user;
         private readonly IPublication _publication;
         private readonly ITopic _topic;
+        private readonly AppDBContext _appDbContext;
 
         public PublicationController(UserManager<User> userManager, IUser iUser, IPublication iPublication, ITopic iTopic)
         {
@@ -90,7 +92,7 @@ namespace BlogHost.Controllers
                     Topic = _topic.GetTopicDB(model.TopicName),
                     User = _user.GetUserDB(_userManager.GetUserId(User)),
                 };
-
+                publ.LikePost = 0;
                 _publication.AddPublicationDB(publ);
                 return RedirectToAction("AllPosts");
             }
@@ -137,6 +139,17 @@ namespace BlogHost.Controllers
             }
             return View(model);
         }
+
+        public async Task<IActionResult> Like(int id)
+        {
+            Publication update = _appDbContext.Publications.ToList()
+                                                          .Find(u => u.Id == id);
+            update.LikePost += 1;
+            _appDbContext.SaveChanges();
+
+            return RedirectToAction("Post", new { id = id });
+        }
+
 
         public async Task<ActionResult> Delete(int id)
         {

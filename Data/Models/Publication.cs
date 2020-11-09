@@ -15,7 +15,7 @@ namespace BlogHost.Data.Models
         public string PublicationText { get; set; }
         public string ImgUrlPublication { get; set; }
         public bool isFavorite { get; set; }
-        public int Like { get; set; }
+        public int LikePost { get; set; }
         public DateTime DatePublication { get; set; } = DateTime.Now;
         public int UserId { get; set; }
         public virtual User User { get; set; }
@@ -23,6 +23,6 @@ namespace BlogHost.Data.Models
         public virtual Topic Topic { get; set; }
         public List<Comment> Comments { get; set; }
         public byte[] AvatarPost { get; set; }
-
+        
     }
 }
