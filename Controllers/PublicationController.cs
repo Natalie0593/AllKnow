@@ -69,14 +69,16 @@ namespace BlogHost.Controllers
         [HttpPost]
         public IActionResult CreatePost(CreatePublicationViewModel model)
         {
-            byte[] imageData = null;
+            if (ModelState.IsValid)
+            {
+                byte[] imageData = null;
             // считываем переданный файл в массив байтов
             using (var binaryReader = new BinaryReader(model.AvatarPost.OpenReadStream()))
             {
                 imageData = binaryReader.ReadBytes((int)model.AvatarPost.Length);
             }
-
-            string a = _userManager.GetUserId(User);
+            
+                string a = _userManager.GetUserId(User);
             Publication publ = new Publication {
                 PublicationName = model.PublicationName,
                 Discription = model.Discription,
@@ -89,7 +91,9 @@ namespace BlogHost.Controllers
             };
 
             _publication.AddPublicationDB(publ);
-            return RedirectToAction("CreatePost");
+            return RedirectToAction("AllPosts");
+            }
+            return View(model);
         }
 
         [HttpGet]
