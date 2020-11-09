@@ -25,6 +25,10 @@ namespace BlogHost.ViewModels
         [Display(Name = "Фото")]
         public IFormFile AvatarPost { get; set; }
 
+        [Required]
+        [Display(Name = "Фото")]
+        public IFormFile AvatarPost2 { get; set; }
+
         [Display(Name = "Любимое")]
         public bool isFavorite { get; set; }
 

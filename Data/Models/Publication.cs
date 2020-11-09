@@ -23,6 +23,7 @@ namespace BlogHost.Data.Models
         public virtual Topic Topic { get; set; }
         public List<Comment> Comments { get; set; }
         public byte[] AvatarPost { get; set; }
-        
+        public byte[] AvatarPost2 { get; set; }
+
     }
 }

@@ -74,10 +74,15 @@ namespace BlogHost.Controllers
             if (ModelState.IsValid)
             {
                 byte[] imageData = null;
+                byte[] imageData2 = null;
                 // считываем переданный файл в массив байтов
                 using (var binaryReader = new BinaryReader(model.AvatarPost.OpenReadStream()))
                 {
                     imageData = binaryReader.ReadBytes((int)model.AvatarPost.Length);
+                }
+                using (var binaryReader = new BinaryReader(model.AvatarPost2.OpenReadStream()))
+                {
+                    imageData2 = binaryReader.ReadBytes((int)model.AvatarPost2.Length);
                 }
 
                 string a = _userManager.GetUserId(User);
@@ -87,6 +92,7 @@ namespace BlogHost.Controllers
                     Discription = model.Discription,
                     PublicationText = model.PublicationText,
                     AvatarPost = imageData,
+                    AvatarPost2 = imageData2,
                     isFavorite = model.isFavorite,
                     TopicId = _topic.GetTopicDB(model.TopicName).Id,
                     Topic = _topic.GetTopicDB(model.TopicName),
