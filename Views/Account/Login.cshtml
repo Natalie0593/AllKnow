@@ -1,0 +1,33 @@
+﻿@model BlogHost.ViewModels.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+<div class="text-center col-4 container">
+    <h1 class="h2 mb-3 font-weight-normal">Вход в приложение</h1>
+    <form class="form-singin" method="post" asp-controller="Account" asp-action="Login"
+            asp-route-returnUrl="@Model.ReturnUrl">
+        <div asp-validation-summary="ModelOnly"></div>
+        <div>
+            <label asp-for="UserName"></label><br />
+            <input asp-for="UserName" />
+            <span asp-validation-for="UserName"></span>
+        </div>
+        <div>
+            <label asp-for="Password"></label><br />
+            <input asp-for="Password" />
+            <span asp-validation-for="Password"></span>
+        </div>
+        <div>
+            <label asp-for="RememberMe"></label><br />
+            <input asp-for="RememberMe" />
+        </div>
+        <div class="align-content-center">
+            <input class="btn btn-sm btn-primary btn-block align-items-center" type="submit" value="Войти" />
+        </div>
+        <div>
+            <a class="text-muted" asp-controller="Account" asp-action="ForgotPassword">Forgot password?</a>
+        </div>
+    </form>
+</div>
+

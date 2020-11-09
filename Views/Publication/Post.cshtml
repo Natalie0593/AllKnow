@@ -1,0 +1,46 @@
+﻿@model BlogHost.Data.Models.Publication
+
+@{
+    ViewData["Title"] = "Post";
+}
+
+<table class="body-wrap">
+    <tr>
+        <td></td>
+        <td class="container" bgcolor="#FFFFFF">
+
+            <div class="content">
+                <table>
+                    <tr>
+                        <td>
+                            <p class="lead">@Model.PublicationName</p>
+
+                            <!-- A Real Hero (and a real human being) -->
+                            <p>
+                                <img style='width:600px; height:400px;' src="data:image/jpeg;base64,@(Convert.ToBase64String(@Model.AvatarPost))" alt="" class="img-rounded" />
+                            </p><!-- /hero -->
+                            <!-- Callout Panel -->
+                            <p class="callout">
+                                @Model.DatePublication
+                            </p><!-- /Callout Panel -->
+
+                            <p>@Model.PublicationText</p>
+                            <br />
+                            <br />
+                        </td>
+                    </tr>
+                </table>
+                <a class="btn btn-sm btn-primary" asp-controller="Comment" asp-action="CreateComment" asp-route-id="@Model.Id">Оставить комментарий</a>
+                <a class="btn btn-sm btn-primary" asp-controller="Comment" asp-action="AllComments">Просмотреть комментарии</a>
+
+                @if (User.IsInRole("admin") || User.IsInRole("moder"))
+                {
+                    <a class="btn btn-sm btn-primary" asp-controller="Publication" asp-action="EditPost" asp-route-id="@Model.Id">Редактировать публикацию</a>
+                    <a class="btn btn-sm btn-danger" asp-controller="Publication" asp-action="Delete" asp-route-id="@Model.Id">Удалить публикацию</a>
+                }
+            </div>
+
+        </td>
+        <td></td>
+    </tr>
+</table><!-- /BODY -->

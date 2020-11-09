@@ -1,0 +1,44 @@
+﻿@model BlogHost.ViewModels.EditePostViewModel
+
+@{
+    ViewData["Title"] = "EditPost";
+}
+
+<h1>EditPost</h1>
+<div class="text-center container col-4">
+    <form method="post" asp-controller="Publication" asp-action="EditPost">
+        <div asp-validation-summary="ModelOnly"></div>
+        <div>
+            <label asp-for="PublicationName"></label><br />
+            <input asp-for="PublicationName" />
+            <span asp-validation-for="PublicationName"></span>
+        </div>
+        <div>
+            <label asp-for="Discription"></label><br />
+            <input asp-for="Discription" />
+            <span asp-validation-for="Discription"></span>
+        </div>
+        <div>
+            <label asp-for="PublicationText"></label><br />
+            <textarea asp-for="PublicationText" cols="40" rows="3"></textarea>
+            <span asp-validation-for="PublicationText"></span>
+        </div>
+        <select asp-for="TopicName" size="1">
+            <option value="World">World</option>
+            <option selected="selected" value="U.S.">U.S.</option>
+            <option value="Technology">Technology</option>
+            <option value="Design">Design</option>
+            <option value="Culture">Culture</option>
+            <option value="Business">Business</option>
+            <option value="Politics">Politics</option>
+            <option value="Opinion">Opinion</option>
+            <option value="Science">Science</option>
+            <option value="Health">Health</option>
+            <option value="Style">Style</option>
+            <option value="Travel">Travel</option>
+        </select>
+        <div class="">
+            <input class="btn btn-sm btn-primary btn-block" type="submit" value="Создать" />
+        </div>
+    </form>
+</div>

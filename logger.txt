@@ -1,0 +1,78 @@
+Request starting HTTP/2.0 GET https://localhost:44307/lib/jquery/dist/jquery.min.js  
+Request starting HTTP/2.0 GET https://localhost:44307/  
+Executing endpoint 'BlogHost.Controllers.HomeController.Index (BlogHost)'
+Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller BlogHost.Controllers.HomeController (BlogHost).
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 190.5446ms.
+Executed action BlogHost.Controllers.HomeController.Index (BlogHost) in 234.03740000000002ms
+Request starting HTTP/2.0 GET https://localhost:44307/  
+Entity Framework Core 3.1.0-preview2.19525.5 initialized 'AppDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT 1
+Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[DateRegistration], [a].[Email], [a].[EmailConfirmed], [a].[Gender], [a].[ImgUrl], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[Name], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[Profession], [a].[SecondName], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [a].[Year]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+Executed DbCommand (2ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+Executed DbCommand (5ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE ([a].[NormalizedName] = @__normalizedName_0) AND [a].[NormalizedName] IS NOT NULL
+Executed DbCommand (2ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0
+Executing endpoint 'BlogHost.Controllers.HomeController.Index (BlogHost)'
+Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller BlogHost.Controllers.HomeController (BlogHost).
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 162.6077ms.
+Executed action BlogHost.Controllers.HomeController.Index (BlogHost) in 204.5866ms
+Request starting HTTP/2.0 GET https://localhost:44307/  
+Entity Framework Core 3.1.0-preview2.19525.5 initialized 'AppDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT 1
+Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+Executing endpoint 'BlogHost.Controllers.HomeController.Index (BlogHost)'
+Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller BlogHost.Controllers.HomeController (BlogHost).
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 137.5418ms.
+Executed action BlogHost.Controllers.HomeController.Index (BlogHost) in 176.1202ms

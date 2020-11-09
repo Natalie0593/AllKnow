@@ -1,0 +1,17 @@
+﻿@model List<BlogHost.ViewComponents.Manager>
+@{
+    ViewData["Title"] = "ManagersList";
+}
+
+<h3 class="text-center">Managers</h3>
+<table class="table">
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.Email</td>
+            <td>
+                @user.Role
+            </td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,16 @@
+﻿@model BlogHost.ViewModels.CreateCommentViewModel
+
+@{
+    ViewData["Title"] = "EditComment";
+}
+
+<h1>EditComment</h1>
+
+<form method="post" asp-controller="Comment" asp-action="EditComment">
+    <div>
+        <label asp-for="CommentText"></label>
+        <input asp-for="CommentText" class="form-control" />
+        <span asp-validation-for="CommentText"></span>
+    </div>
+    <input class="btn btn-sm btn-primary" type="submit" value="Создать" />
+</form>

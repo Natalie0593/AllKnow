@@ -1,0 +1,74 @@
+﻿@model BlogHost.ViewModels.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+    <div class="text-center container col-6">
+        <h2>Регистрация нового пользователя</h2>
+        <form method="post" asp-controller="Account" asp-action="Register" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly"></div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="Name"></label><br />
+                    <input asp-for="Name" />
+                    <span asp-validation-for="Name"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="SecondName"></label><br />
+                    <input asp-for="SecondName" />
+                    <span asp-validation-for="SecondName"></span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="UserName"></label><br />
+                    <input asp-for="UserName" />
+                    <span asp-validation-for="UserName"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Email"></label><br />
+                    <input asp-for="Email" />
+                    <span asp-validation-for="Email"></span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="Password"></label><br />
+                    <input asp-for="Password" />
+                    <span asp-validation-for="Password"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="PasswordConfirm"></label><br />
+                    <input asp-for="PasswordConfirm" />
+                    <span asp-validation-for="PasswordConfirm"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <select asp-for="Gender" size="1">
+                    <option value="men">men</option>
+                    <option selected="selected" value="women">women</option>
+                </select><br />
+            </div>
+
+            <div class="form-group">
+                <p>
+                    <label>Аватар</label>
+                    <input name="Avatar" type="file" class="form-control" />
+                </p>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Year"></label><br />
+                <input asp-for="Year" />
+                <span asp-validation-for="Year"></span>
+            </div>
+
+            <div class="">
+                <input class="btn btn-sm btn-primary btn-block" type="submit" value="Регистрация" />
+            </div>
+        </form>
+    </div>
+
