@@ -14,12 +14,19 @@ namespace BlogHost.Controllers
     {
         UserManager<User> _userManager;
         private readonly IUser _user;
+        private IUser @object;
 
         public UsersController(UserManager<User> userManager, IUser iUser)
         {
             _user = iUser;
             _userManager = userManager;
         }
+        
+        public IActionResult Index()
+        {
+            return View(@object.GetAll());
+        }
+
 
         public IActionResult Profile(){
 
@@ -48,6 +55,16 @@ namespace BlogHost.Controllers
                 }
             }
             return View(model);
+        }
+
+        public IActionResult GetUser(int? id)
+        {
+            if (!id.HasValue)
+                return BadRequest();
+            User user = @object.GetUserDB("id.Value");
+            if (user == null)
+                return NotFound();
+            return View(user);
         }
 
         public async Task<IActionResult> Edit(string id)

@@ -20,5 +20,13 @@ namespace BlogHost.Data.Repositories
         {
             return _appDbContext.Users.FirstOrDefault(x => x.Id == id);
         }
+        public IEnumerable<User> GetAll()
+        {
+            return _appDbContext.Users;
+        }
+        public User Get(int id)
+        {
+            return _appDbContext.Users.FirstOrDefault(x => x.Id == "id");
+        }
     }
 }
