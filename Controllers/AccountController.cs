@@ -118,7 +118,7 @@ namespace BlogHost.Controllers
                 }
 
                 var result =
-                    await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, false);
+                    await _signInManager.PasswordSignInAsync(model.UserName, model.Password, false, false);
                 if (result.Succeeded)
                 {
                     // проверяем, принадлежит ли URL приложению

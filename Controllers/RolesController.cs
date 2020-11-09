@@ -65,7 +65,7 @@ namespace BlogHost.Controllers
             {
                 // получем список ролей пользователя
                 var userRoles = await _userManager.GetRolesAsync(user);
-                var allRoles = _roleManager.Roles.ToList();
+                var allRoles = _roleManager.Roles.Where(m => m.Name != "admin").ToList();
                 ChangeRoleViewModel model = new ChangeRoleViewModel
                 {
                     UserId = user.Id,
