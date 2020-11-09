@@ -28,7 +28,7 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label asp-for="Email"></label><br />
-                    <input asp-for="Email" />
+                    <input asp-for="Email" type="email" />
                     <span asp-validation-for="Email"></span>
                 </div>
             </div>
@@ -62,7 +62,7 @@
 
             <div class="form-group">
                 <label asp-for="Year"></label><br />
-                <input asp-for="Year" />
+                <input asp-for="Year" type="number" min="1900" max="2099" />
                 <span asp-validation-for="Year"></span>
             </div>
 
