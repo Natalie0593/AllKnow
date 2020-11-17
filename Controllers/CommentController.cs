@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BlogHost.Data.Interfaces;
-using BlogHost.Data.Models;
 using BlogHost.ViewModels;
+using BlogHost.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 

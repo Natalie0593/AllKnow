@@ -5,7 +5,11 @@ VisualStudioVersion = 16.0.29418.71
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlogHost", "BlogHost.csproj", "{47374608-E403-4514-93ED-2203A63262D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogHost.Tests", "..\BlogHost.Tests\BlogHost.Tests.csproj", "{1F30835D-7311-4D6A-AD20-155C1092E2C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlogHost.Tests", "..\BlogHost.Tests\BlogHost.Tests.csproj", "{1F30835D-7311-4D6A-AD20-155C1092E2C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "..\Entities\Entities.csproj", "{EA53A5B8-2F83-4787-9D05-A1E5A6E5756D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositories", "..\Repositories\Repositories.csproj", "{B187ACC3-1320-47BB-8CDA-0CF5170AAA41}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{1F30835D-7311-4D6A-AD20-155C1092E2C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F30835D-7311-4D6A-AD20-155C1092E2C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F30835D-7311-4D6A-AD20-155C1092E2C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA53A5B8-2F83-4787-9D05-A1E5A6E5756D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA53A5B8-2F83-4787-9D05-A1E5A6E5756D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA53A5B8-2F83-4787-9D05-A1E5A6E5756D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA53A5B8-2F83-4787-9D05-A1E5A6E5756D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B187ACC3-1320-47BB-8CDA-0CF5170AAA41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B187ACC3-1320-47BB-8CDA-0CF5170AAA41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B187ACC3-1320-47BB-8CDA-0CF5170AAA41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B187ACC3-1320-47BB-8CDA-0CF5170AAA41}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

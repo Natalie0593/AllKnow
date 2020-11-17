@@ -21,7 +21,10 @@ namespace BlogHost.Controllers
             _user = iUser;
             _userManager = userManager;
         }
-        
+        //public UsersController(IUser @object)
+        //{
+        //    this.@object = @object;
+        //}
         public IActionResult Index()
         {
             return View(@object.GetAll());

@@ -41,8 +41,16 @@ namespace BlogHost.Controllers
                     imageData = binaryReader.ReadBytes((int)model.Avatar.Length);
                 }
 
-                User user = new User { Email = model.Email, UserName = model.UserName, Year = model.Year, Name = model.Name,
-                    SecondName = model.SecondName, Gender = model.Gender, DateRegistration = System.DateTime.Now, Avatar = imageData
+                User user = new User
+                {
+                    Email = model.Email,
+                    UserName = model.UserName,
+                    Year = model.Year,
+                    Name = model.Name,
+                    SecondName = model.SecondName,
+                    Gender = model.Gender,
+                    DateRegistration = System.DateTime.Now,
+                    Avatar = imageData
                 };
                 // добавляем пользователя
                 var result = await _userManager.CreateAsync(user, model.Password);
@@ -56,10 +64,10 @@ namespace BlogHost.Controllers
                         new { userId = user.Id, code },
                         protocol: HttpContext.Request.Scheme);
                     EmailService emailService = new EmailService();
-                    await emailService.SendEmailAsync(model.Email, _config["Email:password"], "Confirm your account",
+                    await emailService.SendEmailAsync(_config["Email:mail"], _config["Email:password"], model.Email, "Confirm your account",
                         $"Подтвердите регистрацию, перейдя по ссылке: <a href='{callbackUrl}'>link</a>");
- 
-                    return Content("Для завершения регистрации проверьте электронную почту и перейдите по ссылке, указанной в письме" +$"  href='{callbackUrl}'");
+
+                    return Content("Для завершения регистрации проверьте электронную почту и перейдите по ссылке, указанной в письме" + $"{callbackUrl}");
                 }
                 else
                 {
@@ -165,7 +173,7 @@ namespace BlogHost.Controllers
                 var code = await _userManager.GeneratePasswordResetTokenAsync(user);
                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code }, protocol: HttpContext.Request.Scheme);
                 EmailService emailService = new EmailService();
-                await emailService.SendEmailAsync(model.Email, _config["Email:password"], "Reset Password",
+                await emailService.SendEmailAsync(_config["Email:mail"], _config["Email:password"], model.Email, "Reset Password",
                     $"Для сброса пароля пройдите по ссылке: <a href='{callbackUrl}'>link</a>");
                 return View("ForgotPasswordConfirmation");
             }
