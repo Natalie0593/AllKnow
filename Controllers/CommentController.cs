@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BlogHost.Data.Interfaces;
+﻿using System.Threading.Tasks;
 using BlogHost.ViewModels;
-using BlogHost.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Entities;
+using Interfaces;
+using Services;
+using ViewModels;
 
 namespace BlogHost.Controllers
 {
@@ -14,17 +13,18 @@ namespace BlogHost.Controllers
     {
         UserManager<User> _userManager;
         private readonly IUser _user;
-        private readonly IPublication _publication;
-        private readonly ITopic _topic;
-        private readonly IComment _comment;
-
-        public CommentController(UserManager<User> userManager, IUser iUser, IPublication iPublication, ITopic iTopic, IComment iComment)
+        // private readonly IPublication _publication;
+        IPublicationService _publicationService;
+       // private readonly ITopic _topic;
+        ITopicService _topicService;
+        //private readonly IComment _comment;
+        ICommentSevice _commentService;
+        public CommentController(UserManager<User> userManager, IUser iUser, IPublicationService iPublication, ITopicService iTopic)
         {
             _user = iUser;
-            _publication = iPublication;
-            _topic = iTopic;
+            _publicationService = iPublication;
+            _topicService = iTopic;
             _userManager = userManager;
-            _comment = iComment;
         }
 
         public static int ID;
@@ -38,28 +38,35 @@ namespace BlogHost.Controllers
         [HttpPost]
         public IActionResult CreateComment(CreateCommentViewModel model)
         {
-            Comment comment = new Comment
-            {
-                CommentText = model.CommentText,
-                LoginUser = _user.GetUserDB(_userManager.GetUserId(User)).UserName,
-                PublicationID = ID,
-                Publication = _publication.GetPostDB(ID)
-            };
+            var login = _user.GetUserDB(_userManager.GetUserId(User)).UserName;
 
-            _comment.AddCommentDB(comment);
-            return RedirectToAction("Post","Publication", new { ID });
+            var comment = _commentService.CreateComment(model, ID, login);
+            //Comment comment = new Comment
+            //{
+            //    CommentText = model.CommentText,
+            //    LoginUser =,
+            //    PublicationID = ID,
+            //    Publication = _publication.GetPostDB(ID)
+            //};
+
+            //_comment.AddCommentDB(comment);
+            if (comment != null)
+                return RedirectToAction("Post", "Publication", new { ID });
+
+            return View(comment);
         }
 
         [HttpGet]
         public IActionResult AllComments()
         {
-            return View(_comment.AllComments());
+            var comments = _commentService.AllComments();
+            return View(comments);
         }
 
         [HttpGet]
         public async Task<IActionResult> EditComment(int id)
         {
-            Comment comment = _comment.GetCommentDB(id);
+            Comment comment = _commentService.GetCommentDB(id);
             if (comment == null)
             {
                 return NotFound();
@@ -76,12 +83,13 @@ namespace BlogHost.Controllers
         {
             if (ModelState.IsValid)
             {
-                Comment comment = _comment.GetCommentDB(id);
+                Comment comment = _commentService.GetCommentDB(id);
                 if (comment != null)
                 {
-                    comment.CommentText = model.CommentText;
+                    //comment.CommentText = model.CommentText;
+                    //_comment.UpdateComment(comment);
 
-                    _comment.UpdateComment(comment);
+                    comment = _commentService.EditComment(model,comment);
                     return RedirectToAction("AllComments");
                 }
             }
@@ -90,10 +98,10 @@ namespace BlogHost.Controllers
 
         public async Task<ActionResult> Delete(int id)
         {
-            Comment comment = _comment.GetCommentDB(id);
+            Comment comment = _commentService.GetCommentDB(id);
             if (comment != null)
             {
-                _comment.DeleteComment(comment);
+                _commentService.DeleteComment(comment);
             }
             return RedirectToAction("AllComments");
         }

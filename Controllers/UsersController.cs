@@ -1,24 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BlogHost.Data.Interfaces;
-using BlogHost.Data.Models;
+﻿using System.Threading.Tasks;
 using BlogHost.ViewModels;
+using Entities;
+using Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Services;
 
 namespace BlogHost.Controllers
 {
     public class UsersController : Controller
     {
-        UserManager<User> _userManager;
-        private readonly IUser _user;
-        private IUser @object;
 
-        public UsersController(UserManager<User> userManager, IUser iUser)
+        //private IUser @object;
+        UserManager<User> _userManager;
+        IUserService _userService;
+        //private readonly IUser _user; //заменить
+        //private readonly IPublication _publication;
+        IPublicationService _publicationService;
+        ITopicService _topicService;
+        //private readonly ITopic _topic; //заменить
+
+        public UsersController(UserManager<User> userManager, IUserService iUser, IPublicationService iPublication, ITopicService iTopic)
         {
-            _user = iUser;
+            _userService = iUser;
+            _publicationService = iPublication;
+            _topicService = iTopic;
             _userManager = userManager;
         }
         //public UsersController(IUser @object)
@@ -27,13 +33,13 @@ namespace BlogHost.Controllers
         //}
         public IActionResult Index()
         {
-            return View(@object.GetAll());
+            return View(_userService.GetAll());
         }
 
 
         public IActionResult Profile(){
 
-            return View(_user.GetUserDB(_userManager.GetUserId(User)));
+            return View(_userService.GetUserDB(_userManager.GetUserId(User)));
         }
 
         public IActionResult Create() => View();
@@ -64,7 +70,7 @@ namespace BlogHost.Controllers
         {
             if (!id.HasValue)
                 return BadRequest();
-            User user = @object.GetUserDB("id.Value");
+            User user = _userService.GetUserDB("id.Value");
             if (user == null)
                 return NotFound();
             return View(user);

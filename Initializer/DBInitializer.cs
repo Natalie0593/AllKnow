@@ -1,11 +1,8 @@
-﻿using BlogHost.Data;
-using BlogHost.Data.Models;
-using Microsoft.AspNetCore.Builder;
+﻿using Entities;
 using Microsoft.Extensions.DependencyInjection;
-using System;
+using Services;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace BlogHost.Initializer
 {

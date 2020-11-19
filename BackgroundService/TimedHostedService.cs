@@ -38,7 +38,7 @@ namespace BlogHost.BackgroundService
         private async void DoWork(object state)
         {
             EmailService emailService = new EmailService();
-            await emailService.SendEmailAsync(Configuration["Email:mail"], Configuration["Email:password"], "New posts", $"Вы давно не заходили проверьте нове посты, перейдя по ссылке:<a href='https://localhost:44307/'>link</a> ");
+            //await emailService.SendEmailAsync(Configuration["Email:mail"], Configuration["Email:password"], "New posts", $"Вы давно не заходили проверьте нове посты, перейдя по ссылке:<a href='https://localhost:44307/'>link</a> ");
         }
 
         public Task StopAsync(CancellationToken stoppingToken)

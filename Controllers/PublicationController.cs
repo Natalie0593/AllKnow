@@ -1,31 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
-using BlogHost.Data.Interfaces;
-using BlogHost.Data.Models;
 using BlogHost.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using BlogHost.Initializer;
 using System.IO;
-using BlogHost.Data;
+using Entities;
+using Interfaces;
+using Services;
+using ViewModels;
 
 namespace BlogHost.Controllers
 {
     public class PublicationController : Controller
     {
         UserManager<User> _userManager;
-        private readonly IUser _user;
-        private readonly IPublication _publication;
-        private readonly ITopic _topic;
-        private readonly AppDBContext _appDbContext;
-
-        public PublicationController(UserManager<User> userManager, IUser iUser, IPublication iPublication, ITopic iTopic)
+        IUserService _userService;
+        private readonly IUser _user; //заменить
+        //private readonly IPublication _publication;
+        IPublicationService _publicationService;
+        ITopicService _topicService;
+        //private readonly ITopic _topic; //заменить
+       
+        public PublicationController(UserManager<User> userManager, IUser iUser, IPublicationService iPublication, ITopicService iTopic)
         {
             _user = iUser;
-            _publication = iPublication;
-            _topic = iTopic;
+            _publicationService = iPublication;
+            _topicService = iTopic;
             _userManager = userManager;
         }
 
@@ -36,7 +36,7 @@ namespace BlogHost.Controllers
 
         public async Task<IActionResult> Post(int id)
         {
-            Publication post = _publication.GetPostDB(id);
+            Publication post = _publicationService.GetPostDB(id);
             if (post == null)
             {
                 return NotFound();
@@ -48,24 +48,24 @@ namespace BlogHost.Controllers
         {
             if (flag)
             {
-                return View(_publication.AllPostIsFavorite());
+                return View(_publicationService.AllPostIsFavorite());
             }
             else
             {
-                return View(_publication.AllPost());
+                return View(_publicationService.AllPost());
             }
         }
 
         [HttpGet]
         public IActionResult ThemsPost(string nameTopic)
         {
-            return View(_publication.AllThemsPost(_topic.GetIDTopicDB(nameTopic)));
+            return View(_publicationService.AllThemsPost(_topicService.GetIDTopicDB(nameTopic)));
         }
 
         [HttpGet]
         public IActionResult MyPosts()
         {
-            return View(_publication.MyPost(_user.GetUserDB(_userManager.GetUserId(User))));
+            return View(_publicationService.MyPost(_user.GetUserDB(_userManager.GetUserId(User))));
         }
 
         [HttpPost]
@@ -73,33 +73,13 @@ namespace BlogHost.Controllers
         {
             if (ModelState.IsValid)
             {
-                byte[] imageData = null;
-                byte[] imageData2 = null;
+                
+                var user = _user.GetUserDB(_userManager.GetUserId(User));
                 // считываем переданный файл в массив байтов
-                using (var binaryReader = new BinaryReader(model.AvatarPost.OpenReadStream()))
-                {
-                    imageData = binaryReader.ReadBytes((int)model.AvatarPost.Length);
-                }
-                using (var binaryReader = new BinaryReader(model.AvatarPost2.OpenReadStream()))
-                {
-                    imageData2 = binaryReader.ReadBytes((int)model.AvatarPost2.Length);
-                }
+                
 
-                string a = _userManager.GetUserId(User);
-                Publication publ = new Publication
-                {
-                    PublicationName = model.PublicationName,
-                    Discription = model.Discription,
-                    PublicationText = model.PublicationText,
-                    AvatarPost = imageData,
-                    AvatarPost2 = imageData2,
-                    isFavorite = model.isFavorite,
-                    TopicId = _topic.GetTopicDB(model.TopicName).Id,
-                    Topic = _topic.GetTopicDB(model.TopicName),
-                    User = _user.GetUserDB(_userManager.GetUserId(User)),
-                };
-                publ.LikePost = 0;
-                _publication.AddPublicationDB(publ);
+               // string a = _userManager.GetUserId(User);
+                var publ = _publicationService.AddPublicationDB(model, user);
                 return RedirectToAction("AllPosts");
             }
             return View(model);
@@ -108,7 +88,7 @@ namespace BlogHost.Controllers
         [HttpGet]
         public async Task<IActionResult> EditPost(int id)
         {
-            Publication post = _publication.GetPostDB(id);
+            Publication post = _publicationService.GetPostDB(id);
             if (post == null)
             {
                 return NotFound();
@@ -119,7 +99,7 @@ namespace BlogHost.Controllers
                 PublicationName = post.PublicationName,
                 PublicationText = post.PublicationText,
                 Discription = post.Discription,
-                TopicName = _topic.GetTopicName(post.TopicId)
+                TopicName = _topicService.GetTopicName(post.TopicId)
             };
             return View(model);
         }
@@ -129,16 +109,16 @@ namespace BlogHost.Controllers
         {
             if (ModelState.IsValid)
             {
-                Publication post = _publication.GetPostDB(model.Id);
+                Publication post = _publicationService.GetPostDB(model.Id);
                 if (post != null)
                 {
                     post.PublicationName = model.PublicationName;
                     post.PublicationText = model.PublicationText;
                     post.Discription = model.Discription;
-                    post.TopicId = _topic.GetTopicDB(model.TopicName).Id;
-                    post.Topic = _topic.GetTopicDB(model.TopicName);
+                    post.TopicId = _topicService.GetTopicDB(model.TopicName).Id;
+                    post.Topic = _topicService.GetTopicDB(model.TopicName);
 
-                    _publication.UpdatePost(post);
+                    _publicationService.UpdatePost(post);
 
                     return RedirectToAction("AllPosts");
                 }
@@ -148,21 +128,17 @@ namespace BlogHost.Controllers
 
         public async Task<IActionResult> Like(int id)
         {
-            Publication update = _appDbContext.Publications.ToList()
-                                                          .Find(u => u.Id == id);
-            update.LikePost += 1;
-            _appDbContext.SaveChanges();
-
+            Publication post = _publicationService.GetLikePost(id);
             return RedirectToAction("Post", new { id = id });
         }
 
 
         public async Task<ActionResult> Delete(int id)
         {
-            Publication post = _publication.GetPostDB(id);
+            Publication post = _publicationService.GetPostDB(id);
             if (post != null)
             {
-                _publication.DeletePost(post);
+                _publicationService.DeletePost(post);
             }
             return RedirectToAction("AllPosts");
         }

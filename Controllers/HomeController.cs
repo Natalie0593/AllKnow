@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
-using BlogHost.Data.Interfaces;
-using BlogHost.Data.Models;
-using Microsoft.AspNetCore.Authorization;
+using Entities;
+using Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace BlogHost.Controllers
 {

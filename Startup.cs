@@ -4,12 +4,10 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using BlogHost.BackgroundService;
-using BlogHost.Data;
-using BlogHost.Data.Interfaces;
-using BlogHost.Data.Models;
-using BlogHost.Data.Repositories;
 using BlogHost.Initializer;
 using BlogHost.Logger;
+using Entities;
+using Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -21,6 +19,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Repositories;
+using Services;
 using SignalRApp;
 
 namespace BlogHost
@@ -61,10 +61,19 @@ namespace BlogHost
                 options.IdleTimeout = TimeSpan.FromSeconds(3600);
             });
 
-            services.AddTransient<IUser, UserRepository>();
             services.AddTransient<IPublication, PublicationRepository>();
+            services.AddTransient<IPublicationService, PublicationService>();
+
+            services.AddTransient<IUser, UserRepository>();
+            services.AddTransient<IUserService, UserService>();
+
             services.AddTransient<ITopic, TopicRepository>();
+            services.AddTransient<ITopicService, TopicService>();
+
+
             services.AddTransient<IComment, CommentRepository>();
+            services.AddTransient<ICommentSevice, CommentService>();
+
 
             services.AddControllersWithViews();
 
