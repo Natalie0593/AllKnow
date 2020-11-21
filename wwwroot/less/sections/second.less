@@ -1,0 +1,117 @@
+// second
+
+.second.transform {
+    .second-content {
+        .second-cards {
+            .second-card {
+                .second-card-text {
+                    h3 {
+                        &::before {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.second {
+    padding: 100px 0 100px 0;
+    .second-content {
+        width: 100%;
+        .second-cards {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            .second-card {
+                position: relative;
+                height: 400px;
+                width: 300px;
+                background: @bg;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                // margin: 0 30px;
+                .second-card-text {
+                    position: relative;
+                    padding: 30px;
+                    margin-top: 50px;
+                    h2 {
+                        position: absolute;
+                        top: -20px;
+                        right: 20px;
+                        font-size: 150px;
+                        opacity: .2;
+                        font-weight: 900;
+                        transition: ease-in-out .2s;
+                    }
+                    h3 {
+                        font-weight: 700;
+                        color: @bg;
+                        position: relative;
+                        display: inline-block;
+                        z-index: 2;
+                        &::before {
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            width: 0;
+                            background: @border;
+                            transition: ease-in-out .8s;
+                            z-index: -1;
+                        }
+                    }
+                    a {
+                        position: relative;
+                        transition: ease-in-out .2s;
+                        transform: translateY(-40px);
+                        display: inline-block;
+                        opacity: 0;
+                        visibility: hidden;
+                    }
+                }
+                &:hover {
+                    .second-card-text {
+                        h2 {
+                            top: -80px;
+                        }
+                        a {
+                            opacity: 1;
+                            transform: translateY(0);
+                            visibility: visible;
+                        }
+                    }
+                }
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: -2px;
+                    left: -2px;
+                    right: -2px;
+                    bottom: -2px;
+                    background: @bg;
+                    z-index: -1;
+                }
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: -2px;
+                    left: -2px;
+                    right: -2px;
+                    bottom: -2px;
+                    background: @bg;
+                    z-index: -2;
+                    // filter: blur(40px);
+                }
+                &::after, &::before {
+                    background: linear-gradient(144.82deg, @border -1.21%, #63ECED 101.04%);
+                    // transform: skew(2deg, 2deg);
+                }
+            }
+        }
+    }
+}

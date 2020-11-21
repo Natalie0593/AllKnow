@@ -1,27 +1,35 @@
-﻿@model IEnumerable<Entities.Publication>
-@{
-    ViewData["Title"] = "AllPosts";
-}
+﻿@model IEnumerable<Publication>
+@{ ViewData["Title"] = "AllPosts"; }
+
+<style>
+    p1 {
+        padding: 20px;
+    }
+</style>
 
 <div>
     <h1 class="text-center">AllPosts</h1>
 
     <a class="btn btn-sm btn-primary text-center" asp-controller="Publication" asp-action="AllPosts" asp-route-flag="@true">Показать любимые</a>
     <br />
-</div><br />
+</div>
+<br />
 
 
 
 @foreach (var post in Model)
 {
-    <div class="card bg-dark text-white">
-        <img style="height:300px;" src="data:image/jpeg;base64,@(Convert.ToBase64String(@post.AvatarPost))" alt="" class="card-img" />
-        <div class="card-img-overlay">
-            <h5 class="card-title">@post.PublicationName</h5>
-            <p class="card-text">@post.Discription</p>
-            <p class="card-text">@post.DatePublication</p>
-            <p class="card-text"><a class="text-white font-weight-bold" asp-controller="Publication" asp-action="Post" asp-route-id="@post.Id">Continue reading...</a></p>
-        </div>
+<div class="container row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+    <div class="col-auto d-none d-lg-block">
+        <img src="data:image/jpeg;base64,@(Convert.ToBase64String(@post.AvatarPost))" align="right" width="300" height="322" />
     </div>
-    <br />
-}
+    <div class="col p-4 d-flex flex-column position-static">
+        <h5 class="card-title">@post.PublicationName</h5>
+        <p>@post.Discription</p>
+        <p>@post.DatePublication</p>
+        <p><a class="button" asp-controller="Publication" asp-action="Post" asp-route-id="@post.Id">Continue reading...</a></p>
+    </div>
+</div>}
+
+
+<br />

@@ -1,0 +1,91 @@
+// first
+
+.page-wrapper.transform {
+    .first {
+        .first-content {
+            .first-offer {
+                h1 {
+                    &::before {
+                        width: 100%;
+                    }
+                }
+                h2 {
+                    &::before {
+                        width: 0%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.first {
+    padding: 0 0 100px 0;
+    .first-content {
+        width: 100%;
+        .first-offer {
+            width: 50%;
+            float: right;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            .first-offer-block {
+                text-align: left;
+                h1 {
+                    font-weight: 700;
+                    font-size: 24px;
+                    color: @bg;
+                    margin-bottom: 10px;
+                    position: relative;
+                    text-transform: uppercase;
+                    // float: left;
+                    display: inline-block;
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        width: 0;
+                        background: @border;
+                        transition: ease-in-out .8s;
+                        z-index: -1;
+                    }
+                }
+                h2 {
+                    font-size: 36px;
+                    margin-bottom: 70px;
+                    text-transform: uppercase;
+                    position: relative;
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        width: 100%;
+                        background: @bg;
+                        transition: ease-in-out .8s;
+                    }
+                }
+                a {
+                    font-size: 18px;
+                }
+            }
+        }
+        .first-bg {
+            // background: #fff url('../img/bg/bg_img1.jpg') 50% 100% no-repeat;
+            // background-size: cover;
+            width: 50%;
+            height: 100vh;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: -1;
+        }
+    }
+}

@@ -1,0 +1,109 @@
+// // five
+
+// .five {
+//     padding: 100px 0 100px 0;
+//     .five-content {
+//         width: 100%;
+//         .five-buttons {
+//             text-align: center;
+//             margin-bottom: 30px;
+//             button {
+//                 margin: 0 15px;
+//                 outline: none;
+//                 border: 2px solid @border !important;
+//             }
+//             button.active {
+//                 background: @border;
+//             }
+//         }
+//         .five-cards {
+//             .element-item {
+//                 width: 25%;
+//                 img {
+//                     width: 100%;
+//                     padding: 0;
+//                     margin: 0;
+//                     transition: .2s;
+//                 }
+//                 &:hover {
+//                     overflow: hidden;
+//                     img {
+//                         width: 110%;
+//                         margin: -5%;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+
+.five {
+    width: 100%;
+    padding: 100px 0 100px 0;
+    .five-content {
+        .five-cards {
+            .five-card {
+                display: flex;
+                margin-top: -4px;
+                .five-card-bg {
+                    width: 50%;
+                    overflow: hidden;
+                    img {
+                        width: 100%;
+                        transition: .2s;
+                        transition: transform .5s, filter 1.5s ease;
+                        filter: grayscale(100%);
+                        transition-delay: .3s;
+                    }
+                    &:hover {
+                        img {
+                            filter: grayscale(0);
+                            transform: scale(1.1);
+                        }
+                    }
+                }
+                .five-card-offer {
+                    width: 50%;
+                    position: relative;
+                    padding: 50px 0;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-around;
+                    .five-card-offer-title {
+                        h3 {
+                            margin: 0 30px 0 30px;
+                            font-weight: 700;
+                            font-size: 24px;
+                            text-transform: uppercase;
+                            width: 30%;
+                        }
+                        span {
+                            margin: 0 30px 0 30px;
+                            font-size: 16px;
+                            color: @border;
+                        }
+                    }
+                    p {
+                        margin: 0 30px 0 30px;
+                        width: 50%;
+                    }
+                    a {
+                        display: flex;
+                        width: 200px;
+                        display: flex;
+                        justify-content: center;
+                        margin: 0 30px 0 30px;
+                    }
+                }
+            }
+            .five-card:nth-child(1) {
+                display: inline-flex;
+                flex-direction: row-reverse;
+            }
+            .five-card:nth-child(3) {
+                display: inline-flex;
+                flex-direction: row-reverse;
+            }
+        }
+    }
+} 

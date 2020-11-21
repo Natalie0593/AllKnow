@@ -1,53 +1,99 @@
-﻿@model IEnumerable<Entities.Publication>
+﻿@model IEnumerable<Publication>
 
-@{
-    ViewData["Title"] = "Home Page";
-}
+@{ ViewData["Title"] = "Home Page"; }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Spacein - Development Agency</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style1.css">
+    <link rel="stylesheet" href="css/media.css">
+    <link rel="stylesheet" href="css/slick/slick.css">
+    <link rel="stylesheet" href="css/slick/slick-theme.css">
+    <link rel="stylesheet" href="css/vegas.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+<body>
+    <div class="preloader complete">
+        <div class="loader"></div>
+    </div>
+    <div class="background">
+        <ul class="bg-bubbles"><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul>
+    </div>
 
     <div class="container">
-        <div class="card bg-dark text-white">
-            <img style="height:300px;" src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.ToList()[0].AvatarPost))" alt="" class="card-img" />
-            <div class="card-img-overlay">
-                <h5 class="card-title">@Model.ToList()[0].PublicationName</h5>
-                <p class="card-text">@Model.ToList()[0].Discription</p>
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <p class="card-text"><a class="text-white font-weight-bold" asp-controller="Publication" asp-action="Post" asp-route-id="@Model.ToList()[0].Id">Continue reading...</a></p>
-                }
-            </div>
-        </div><br />
-        <div class="row mb-2">
-            <div class="col-md-6">
-                <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                    <div class="col p-4 d-flex flex-column position-static">
-                        <h3 class="mb-0">@Model.ToList()[1].PublicationName</h3>
-                        <div class="mb-1 text-muted">@Model.ToList()[1].DatePublication</div>
-                        <p class="card-text mb-auto">@Model.ToList()[1].Discription</p>
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <a asp-controller="Publication" asp-action="Post" asp-route-id="@Model.ToList()[1].Id" class="stretched-link">Continue reading</a>
-                        }
+        <section class="second transform" id="about">
+            <div class="second-content">
+                <div class="second-cards">
+                    <div class="second-card">
+                        <div class="second-card-text">
+                            <h2>01</h2>
+                            <h5>@Model.ToList()[0].PublicationName</h5>
+                            <p>@Model.ToList()[0].Discription</p>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                <a class="button" font-weight-bold" asp-controller="Publication" asp-action="Post" asp-route-id="@Model.ToList()[0].Id">Read more</a>}
+                        </div>
                     </div>
-                    <div class="col-auto d-none d-lg-block">
-                        <img style='width:200px; height:200px;' src="data:image/jpeg;base64,@(Convert.ToBase64String(@Model.ToList()[1].AvatarPost))" />
+                    <div class="second-card">
+                        <div class="second-card-text">
+                            <h2>02</h2>
+                            <h5>@Model.ToList()[1].PublicationName</h5>
+                            <p>@Model.ToList()[1].Discription</p>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                <a class="button" font-weight-bold" asp-controller="Publication" asp-action="Post" asp-route-id="@Model.ToList()[1].Id">Read more</a> } @*<a class="button" href="#">Read more</a>*@
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                    <div class="col p-4 d-flex flex-column position-static">
-                        <h3 class="mb-0">@Model.ToList()[2].PublicationName</h3>
-                        <div class="mb-1 text-muted">@Model.ToList()[2].DatePublication</div>
-                        <p class="mb-auto">@Model.ToList()[2].Discription</p>
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <a asp-controller="Publication" asp-action="Post" asp-route-id="@Model.ToList()[2].Id" class="stretched-link">Continue reading</a>
-                        }
-                    </div>
-                    <div class="col-auto d-none d-lg-block">
-                        <img style='width:200px; height:200px;' src="data:image/jpeg;base64,@(Convert.ToBase64String(@Model.ToList()[2].AvatarPost))" />
+                    <div class="second-card">
+                        <div class="second-card-text">
+                            <h2>03</h2>
+                            <h5>@Model.ToList()[2].PublicationName</h5>
+                            <p>@Model.ToList()[2].Discription</p>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                <a class="button" font-weight-bold" asp-controller="Publication" asp-action="Post" asp-route-id="@Model.ToList()[2].Id">Read more</a>}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+
     </div>
+</body>
+<script src="js/jquery.min.js"></script>
+<script src="js/slick.min.js"></script>
+<script src="js/isotope.pkgd.min.js"></script>
+<script src="js/imagesloaded.pkgd.min.js"></script>
+<script src="js/vegas.min.js"></script>
+<script src="js/skrollr.js"></script>
+<script src="js/main.js"></script>
+<script>$('.switcher-open').click(function () {
+        $('.styles-switcher').toggleClass('active');
+    });
+    function light() {
+        $("head").html($("head").html().replace('css/style.css', 'css/style1.css'));
+    }
+    function dark() {
+        $("head").html($("head").html().replace('css/style1.css', 'css/style.css'));
+    }</script>
+<script>$(window).scroll(function () {
+        let second = $('.second').offset();
+        let three = $('.three').offset();
+        let fourth = $('.fourth').offset();
+        let six = $('.six').offset();
+        if ($(window).scrollTop() > second.top - 100) {
+            $('.second').addClass('transform');
+        }
+        if ($(window).scrollTop() > three.top - 200) {
+            $('.three').addClass('transform');
+        }
+        if ($(window).scrollTop() > fourth.top - 300) {
+            $('.fourth').addClass('transform');
+        }
+        if ($(window).scrollTop() > six.top - 300) {
+            $('.six').addClass('transform');
+        }
+    });
+}</script>

@@ -1,0 +1,185 @@
+// six
+
+.six.transform {
+    .six-content {
+        .six-offer {
+            h2 {
+                &::before {
+                    width: 100%;
+                }
+            }
+            p {
+                &::before {
+                    width: 0%;
+                }
+            }
+        }
+    }
+}
+
+.six {
+    padding: 100px 0 100px 0;
+    .six-content {
+        width: 100%;
+        text-align: center;
+        .six-offer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            h2 {
+                font-size: 36px;
+                margin-bottom: 10px;
+                font-weight: 700;
+                color: @bg;
+                margin-bottom: 10px;
+                position: relative;
+                text-transform: uppercase;
+                display: inline-block;
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    width: 0;
+                    background: @border;
+                    transition: ease-in-out .8s;
+                    z-index: -1;
+                }
+            }
+            p {
+                text-align: center;
+                width: 550px;
+                margin-bottom: 30px;
+                width: 40%;
+                position: relative;
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    width: 100%;
+                    background: @bg;
+                    transition: ease-in-out .8s;
+                }
+            }
+        }
+        .six-reviews {
+            display: flex;
+            justify-content: center;
+            margin-top: 100px;
+            .review {
+                width: 110px;
+                height: 110px;
+                background: @border;
+                border-radius: 100px;
+                margin: 0 15px;
+                animation: pulse 2s infinite;
+                cursor: pointer;
+                img {
+                    width: 100px;
+                    height: 100px;
+                    border-radius: 100px;
+                    margin: 5px;
+                }
+                &:hover {
+                    animation: none;
+                }
+                &:nth-child(1) {
+                    animation-delay: .2s;
+                }
+                &:nth-child(2) {
+                    animation-delay: .4s;
+                }
+                &:nth-child(3) {
+                    animation-delay: .6s;
+                }
+                &:nth-child(4) {
+                    animation-delay: .8s;
+                }
+                &:nth-child(5) {
+                    animation-delay: 1s;
+                }
+                @-webkit-keyframes pulse {
+                    0% {
+                        -webkit-box-shadow: 0 0 0 0 @pulse1;
+                    }
+                    70% {
+                        -webkit-box-shadow: 0 0 0 10px @pulse2;
+                    }
+                    100% {
+                        -webkit-box-shadow: 0 0 0 0 @pulse2;
+                    }
+                }
+                @keyframes pulse {
+                    0% {
+                        -moz-box-shadow: 0 0 0 0 @pulse1;
+                        box-shadow: 0 0 0 0 @pulse1;
+                    }
+                    70% {
+                        -moz-box-shadow: 0 0 0 10px @pulse2;
+                        box-shadow: 0 0 0 10px @pulse2;
+                    }
+                    100% {
+                        -moz-box-shadow: 0 0 0 0 @pulse2;
+                        box-shadow: 0 0 0 0 @pulse2;
+                    }
+                }
+            }
+        }
+        .six-counter {
+            margin-top: 100px;
+            display: flex;
+            justify-content: space-between;
+            .counter-card {
+                position: relative;
+                height: 300px;
+                width: 300px;
+                background: @bg;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .counter-card-text {
+                    position: relative;
+                    padding: 30px;
+                    text-align: center;
+                    h2 {
+                        font-size: 150px;
+                        opacity: .2;
+                        font-weight: 900;
+                        transition: ease-in-out .2s;
+                    }
+
+                }
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: -2px;
+                    left: -2px;
+                    right: -2px;
+                    bottom: -2px;
+                    background: #fff;
+                    z-index: -1;
+                }
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: -2px;
+                    left: -2px;
+                    right: -2px;
+                    bottom: -2px;
+                    background: #fff;
+                    z-index: -2;
+                    // filter: blur(30px);
+                }
+                &::after, &::before {
+                    background: linear-gradient(144.82deg, @border -1.21%, #63ECED 101.04%);
+                    // transform: skew(2deg, 2deg);
+                }
+            }
+        }
+    }
+}

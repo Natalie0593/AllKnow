@@ -1,0 +1,397 @@
+// @media(max-width: 1125px) {}
+// @media(max-width: 960px) {}
+// @media(max-width: 720px) {}
+// @media(max-width: 540px) {}
+// @media(max-width: 320px) {}
+
+@media(max-width: 1125px) {
+    section {
+        width: 90%;
+    }
+    section.fluid {
+        width: 100%;
+    }
+}
+
+@media(max-width: 320px) {
+    .navigation {
+        .nav-block {
+            width: 250px;
+        }
+    }    
+}
+
+// fisrt section
+
+@media(max-width: 960px) {
+    .first {
+        padding: 0 0 50px 0;
+        .first-content {
+            .first-offer {
+                width: 100%;
+                z-index: 2;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                height: 100vh;
+                align-content: center;
+                justify-content: center;
+                align-items: center;
+                .first-offer-block {
+                    text-align: center;
+                }
+            }
+            .first-bg {
+                width: 100%;
+                height: 100vh;
+                position: absolute;
+                opacity: .2;
+                right: 0;
+                top: 0;
+            }
+        }
+    }
+}
+
+// second section
+
+@media(max-width: 960px) {
+    .second {
+        padding: 50px 0 50px 0;
+        .second-content {
+            .second-cards {
+                position: relative;
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+                .second-card {
+                    position: relative;
+                    height: 400px;
+                    width: 300px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-bottom: 50px;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 720px) {
+    .second {
+        .second-content {
+            .second-cards {
+                .second-card {
+                    .second-card-text {
+                        h2 {
+                            top: -80px;
+                        }
+                        a {
+                            opacity: 1;
+                            transform: translateY(0);
+                            visibility: visible;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// three section 
+
+@media(max-width: 960px) {
+    .three {
+        padding: 50px 0 0px 0;
+        .three-content {
+            .three-cards {
+                .three-card {
+                    .three-card-offer {
+                        margin-top: 0;
+                        p {
+                            width: 100%;
+                        }
+                        &::before {
+                            background: none;
+                        }
+                    }
+                    .three-card-photo {
+                        img {
+                            width: 200px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .arrow-prev
+    {
+        top: -60px;
+        right: 150px;
+    }
+    .arrow-next
+    {
+        top: -60px;
+        right: 100px;
+    }
+}
+
+@media(max-width: 540px) {
+    .three {
+        .three-content {
+            .three-cards {
+                .three-card {
+                    .three-card-offer {
+                        margin-top: 0;
+                        padding: 50px 50px 0 50px;
+                        p {
+                            width: 100%;
+                        }
+                    }
+                    .three-card-photo {
+                        display: none;
+                    }
+                    .three-card-photo-crop {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+
+    .arrow-prev
+    {
+        top: -60px;
+        right: 70px;
+    }
+    .arrow-next
+    {
+        top: -60px;
+        right: 20px;
+    }
+}
+
+// fourth section
+
+@media(max-width: 960px) {
+    .fourth {
+        padding: 0px 0 0px 0;
+        .fourth-content {
+            width: 100%;
+            position: relative;
+            .fourth-offer {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                height: 100vh;
+                float: right;
+                align-content: center;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                z-index: 2;
+                position: relative;
+                p {
+                    margin-bottom: 30px;
+                    width: 90%;
+                }
+            }
+        }
+    }
+}
+
+// five section
+
+@media(max-width: 960px) {
+    // .five {
+    //     padding: 0px 0 50px 0;
+    //     .five-content {
+    //         width: 100%;
+    //         .five-buttons {
+    //             text-align: center;
+    //             margin-bottom: 30px;
+    //             display: flex;
+    //             flex-wrap: wrap;
+    //             button {
+    //                 margin: 15px 0 !important;
+    //                 outline: none;
+    //                 font-size: 12px;
+    //                 width: 100% !important;
+    //             }
+    //         }
+    //         .five-cards {
+    //             .element-item {
+    //                 width: 25%;
+    //                 img {
+    //                     width: 100%;
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+
+    .five {
+        padding: 50px 0 50px 0;
+        .five-content {
+            .five-cards {
+                .five-card {
+                    display: flex;
+                    flex-direction: column;
+                    .five-card-bg {
+                        width: 100%;
+                        overflow: hidden;
+                    }
+                    .five-card-offer {
+                        width: 100%;
+                        position: relative;
+                        padding: 50px 0;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-around;
+                        .five-card-offer-title {
+                            h3 {
+                                margin: 0 10px 50px;
+                                font-weight: 700;
+                                font-size: 24px;
+                                text-transform: uppercase;
+                                width: 100%;
+                            }
+                            span {
+                                font-size: 16px;
+                                margin: 0 10px;
+                            }
+                        }
+                        p {
+                            width: 100%;
+                            margin: 0 10px 50px;
+                        }
+                        a {
+                            display: flex;
+                            width: 200px;
+                            display: flex;
+                            justify-content: center;
+                            margin: 0 10px 50px;
+                        }
+                    }
+                }
+            }
+            .five-card:nth-child(1) {
+                display: flex !important;
+                flex-direction: column !important;
+            }
+            .five-card:nth-child(3) {
+                display: flex !important;
+                flex-direction: column !important;
+            }
+        }
+    } 
+}
+
+@media(max-width: 540px) {
+    .five {
+        .five-content {
+            width: 100%;
+            .five-buttons {
+                text-align: center;
+                margin-bottom: 30px;
+                button {
+                    border: 0;
+                    margin: 10px 15px;
+                    outline: none;
+                }
+            }
+            .five-cards {
+                .element-item {
+                    width: 50%;
+                    img {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// six section
+
+@media(max-width: 960px) {
+    .six {
+        padding: 50px 0 50px 0;
+        .six-content {
+            width: 100%;
+            .six-counter {
+                margin-top: 100px;
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+                .counter-card {
+                    margin-bottom: 50px;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 720px) {
+    .six {
+        padding: 50px 0 50px 0;
+        .six-content {
+            width: 100%;
+            .six-offer {
+                p {
+                    width: 100% !important;
+                }
+            }
+            .six-reviews {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                margin-top: 100px;
+                .review {
+                    margin-bottom: 20px;
+                }
+            }
+        }
+    }
+}
+
+// seven section
+
+@media(max-width: 720px) {
+    .seven {
+        padding: 50px 0 50px 0;
+        .seven-content {
+            flex-direction: column;
+            .seven-form {
+                width: 80%;
+            }
+            .seven-offer {
+                width: 80%;
+                margin-left: 0;
+                margin-top: 100px;
+            }
+        }
+    }
+}
+
+@media(max-width: 540px) {
+    .seven {
+        .seven-content {
+            flex-direction: column;
+            .seven-form {
+                width: 90%;
+                .text-input {
+                    width: 95%;
+                    margin: 15px 2.5%;
+                }
+            }
+            .seven-offer {
+                width: 90%;
+                margin-left: 0;
+                margin-top: 100px;
+            }
+        }
+    }
+}
