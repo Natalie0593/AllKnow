@@ -1,5 +1,6 @@
 ﻿@model ViewModels.CreateCommentViewModel
 
+
 @{
     ViewData["Title"] = "CreateComment";
 }
@@ -7,10 +8,12 @@
 <h1>CreateComment</h1>
 
 <form method="post" asp-controller="Comment" asp-action="CreateComment">
-        <div>
-            <label asp-for="CommentText"></label>
-            <input asp-for="CommentText" class="form-control"/>
-            <span asp-validation-for="CommentText"></span>
-        </div>
+    <div>
+        <label asp-for="CommentText"></label>
+        <input asp-for="CommentText" class="form-control" />
+        <span asp-validation-for="CommentText"></span>
+        @*<a label id="LIKEpost" asp-controller="Publication" asp-action="Like" asp-route-id="@Model.Id">LIKE</a>
+        <label id="likePost" asp-for="LikePost">@Model.LikePost</label>*@
+    </div>
         <input class="btn btn-sm btn-primary" type="submit" value="Создать" />
 </form>

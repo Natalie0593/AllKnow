@@ -19,10 +19,15 @@ namespace BlogHost.Controllers
         //private readonly IPublication _publication;
         IPublicationService _publicationService;
         ITopicService _topicService;
+        ICommentSevice _commentSevice;
+        IVideoService _videoService;
+        
         //private readonly ITopic _topic; //заменить
        
-        public PublicationController(UserManager<User> userManager, IUser iUser, IPublicationService iPublication, ITopicService iTopic)
+        public PublicationController(IVideoService videoService, ICommentSevice commentSevice, UserManager<User> userManager, IUser iUser, IPublicationService iPublication, ITopicService iTopic)
         {
+            _videoService = videoService;
+            _commentSevice = commentSevice;
             _user = iUser;
             _publicationService = iPublication;
             _topicService = iTopic;
@@ -37,11 +42,13 @@ namespace BlogHost.Controllers
         public async Task<IActionResult> Post(int id)
         {
             Publication post = _publicationService.GetPostDB(id);
+            
+            ViewBag.Videos = await _videoService.GetAllVideos(post.Id);
             if (post == null)
             {
                 return NotFound();
             }
-            return View(post);
+            return View(@post);
         }
 
         public IActionResult AllPosts(bool flag)

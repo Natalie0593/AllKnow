@@ -74,6 +74,9 @@ namespace BlogHost
             services.AddTransient<IComment, CommentRepository>();
             services.AddTransient<ICommentSevice, CommentService>();
 
+            services.AddTransient<IVideo, VideoRepository>();
+            services.AddTransient<IVideoService, VideoService>();
+
 
             services.AddControllersWithViews();
 

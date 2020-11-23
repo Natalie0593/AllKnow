@@ -1,28 +1,44 @@
 ﻿@model IEnumerable<Entities.Comment>
 
-@{
-    ViewData["Title"] = "AllComments";
-}
+@{ ViewData["Title"] = "AllComments"; }
 
 <h1>AllComments</h1>
 <table class="table">
     @foreach (var comment in Model)
     {
-        <tr>
-            <td>@comment.LoginUser</td>
-            <td>@comment.DateComment</td>
-            <td>@comment.CommentText</td>
-            @if (User.IsInRole("admin") || User.IsInRole("moder"))
-            {
-                <td>
-                    <form asp-controller="Comment" asp-action="Delete" asp-route-id="@comment.Id" method="post">
-                        <a class="btn btn-sm btn-primary" asp-controller="Comment" asp-action="EditComment" asp-route-id="@comment.Id">Редактировать комментарий</a>
-                        <button type="submit" class="btn btn-sm btn-danger">
-                            Удалить
-                        </button>
-                    </form>
-                </td>
-            }
-        </tr>
-    }
+<tr>
+    <td>@comment.LoginUser</td>
+    <td>@comment.DateComment</td>
+    <td>@comment.CommentText</td>
+
+    <td>
+        <div>
+
+            @*<form asp-controller="Like" asp-action="LikeAdd" asp-route-id="@comment.Id" method="post">
+            <button type="submit" class="btn btn-sm btn-danger">
+                like
+            </button>
+        </form>*@
+
+            <a class="btn btn-sm btn-primary" asp-controller="Like" asp-action="LikeAdd" asp-route-id="@comment.Id">Like</a>
+           
+
+            @*<partial name="_LikeComment.cshtml" />*@
+           
+        </div>
+    </td>
+    <td>@comment.polelike</td>
+
+    @if (User.IsInRole("admin") || User.IsInRole("moder"))
+    {
+<td>
+    <form asp-controller="Comment" asp-action="Delete" asp-route-id="@comment.Id" method="post">
+        <a class="btn btn-sm btn-primary" asp-controller="Comment" asp-action="EditComment" asp-route-id="@comment.Id">Редактировать комментарий</a>
+        <button type="submit" class="btn btn-sm btn-danger">
+            Удалить
+        </button>
+    </form>
+</td>}
+</tr>
+}
 </table>

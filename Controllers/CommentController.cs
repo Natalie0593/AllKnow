@@ -19,12 +19,17 @@ namespace BlogHost.Controllers
         ITopicService _topicService;
         //private readonly IComment _comment;
         ICommentSevice _commentService;
-        public CommentController(UserManager<User> userManager, IUser iUser, IPublicationService iPublication, ITopicService iTopic)
+
+        
+
+        public CommentController( UserManager<User> userManager, IUser iUser, IPublicationService iPublication, ITopicService iTopic, ICommentSevice commentService)
         {
+            
             _user = iUser;
             _publicationService = iPublication;
             _topicService = iTopic;
             _userManager = userManager;
+            _commentService = commentService;
         }
 
         public static int ID;
@@ -57,11 +62,32 @@ namespace BlogHost.Controllers
         }
 
         [HttpGet]
-        public IActionResult AllComments()
+        public IActionResult AllComments(int id)
         {
-            var comments = _commentService.AllComments();
+            var comments = _commentService.AllComments(id);
+            //var count =  _likeService.GetAllLikes( Likes.Where(userLike => userLike.UserId == ViewBag.UserId).Count();
+            //return RedirectToAction("Post", "Publication", new { ID });
             return View(comments);
         }
+
+        //кол-во лайков
+      
+        //public void Hello(int id, int postId) // передаем id комента
+        //{
+        //    var com = _commentService.AllComments(postId); //айди поста
+        //    var likes = _likeService.GetAllLikes(id);
+        //    int count = 0;
+        //    foreach(var c in com)
+        //    {
+        //        foreach (var item in likes)
+        //        {
+        //            count += 1;
+        //        }
+        //        c.polelike = count;
+
+        //    }                 
+
+        //}
 
         [HttpGet]
         public async Task<IActionResult> EditComment(int id)

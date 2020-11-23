@@ -1,8 +1,6 @@
 ﻿@model Entities.Publication
 
-@{
-    ViewData["Title"] = "Post";
-}
+@{ ViewData["Title"] = "Post"; }
 
 <table class="body-wrap">
     <tr>
@@ -25,31 +23,31 @@
                                 @Model.DatePublication
                             </p>
 
-                            <a label id="LIKEpost" asp-route-id="@Model.Id">LIKE</a>
+                            <a label id="LIKEpost" asp-controller="Publication" asp-action="Like" asp-route-id="@Model.Id">LIKE</a>
                             <label id="likePost" asp-for="LikePost">@Model.LikePost</label>
-                            <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
-                            <script type="text/javascript">
+                            @*<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+                                <script type="text/javascript">
 
-                                 if (LIKEpost) {
-                                      $.ajax({
-                                           type = 'POST',
-                                           url: '@Url.Action("Like", "Publication")',
-                                           data: {
-                                               id: @Model.Id
-                                           },
-                                           dataType: "text",
-                                           success: function (msg) {
-                                                let likePost = getElementById('likePost');
-                                                likePost++;
-                                                location.reload(likePost);
-                                                console.log(msg);
-                                           },
-                                           error: function (req, status, error) {
-                                                console.log(msg);
-                                           }
-                                      });
-                                 }
-                            </script>
+                                     if (LIKEpost) {
+                                          $.ajax({
+                                               type = 'POST',
+                                               url: '@Url.Action("Like", "Publication")',
+                                               data: {
+                                                   id: @Model.Id
+                                               },
+                                               dataType: "text",
+                                               success: function (msg) {
+                                                    let likePost = getElementById('likePost');
+                                                    likePost++;
+                                                    location.reload(likePost);
+                                                    console.log(msg);
+                                               },
+                                               error: function (req, status, error) {
+                                                    console.log(msg);
+                                               }
+                                          });
+                                     }
+                                </script>*@
 
                             <p>@Model.PublicationText</p>
                             <br />
@@ -58,16 +56,60 @@
                     </tr>
                 </table>
                 <a class="btn btn-sm btn-primary" asp-controller="Comment" asp-action="CreateComment" asp-route-id="@Model.Id">Оставить комментарий</a>
-                <a class="btn btn-sm btn-primary" asp-controller="Comment" asp-action="AllComments">Просмотреть комментарии</a>
+                <a class="btn btn-sm btn-primary" asp-controller="Comment" asp-action="AllComments" asp-route-id="@Model.Id">Просмотреть комментарии</a>
+
+
+                <a class="button-active revealator-slideup revealator-delay3" asp-controller="Videos" asp-action="Create" asp-route-id="@Model.Id">
+                    Новый видос
+                </a>
 
                 @if (User.IsInRole("admin") || User.IsInRole("moder"))
                 {
-                    <a class="btn btn-sm btn-primary" asp-controller="Publication" asp-action="EditPost" asp-route-id="@Model.Id">Редактировать публикацию</a>
-                    <a class="btn btn-sm btn-danger" asp-controller="Publication" asp-action="Delete" asp-route-id="@Model.Id">Удалить публикацию</a>
-                }
+    <a class="btn btn-sm btn-primary" asp-controller="Publication" asp-action="EditPost" asp-route-id="@Model.Id">Редактировать публикацию</a>
+                    <a class="btn btn-sm btn-danger" asp-controller="Publication" asp-action="Delete" asp-route-id="@Model.Id">Удалить публикацию</a>}
             </div>
 
         </td>
         <td></td>
     </tr>
 </table>
+
+
+<div class="col-md-8">
+    @if (@Model.Videos != null)
+    {
+
+@foreach (var v in @ViewBag.Videos)
+{
+<div class="blog-post">
+    <h2 class="blog-post-title text-white"><a name="@v.Id">@v.Name</a></h2>
+
+    <video width="640" height="480" controls>
+        <source src=@v.Url type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="btn-group">
+            <a class="btn btn-sm btn-outline-secondary" role="button" asp-controller="Videos" asp-action="Edit" asp-route-id="@v.Id">
+                Изменить
+            </a>
+
+            <form asp-controller="Videos" asp-action="Delete" asp-route-id="@v.Id" method="post">
+
+                <button type="submit" class="btn btn-sm btn-danger">
+                    Удалить
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+</div>}}
+            </div>
+
+
+
+
+

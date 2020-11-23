@@ -1,21 +1,19 @@
 ﻿@model ViewModels.CreatePublicationViewModel
 
-@{
-    ViewData["Title"] = "CreatePost";
-}
+@{ ViewData["Title"] = "CreatePost"; }
 
 <div class="text-center container col-4">
     <h1>Create post</h1>
-    <form method="post" asp-controller="Publication" asp-action="CreatePost" enctype="multipart/form-data">
+    <form class="shadow p-3 mb-5 bg-white rounded" method="post" asp-controller="Publication" asp-action="CreatePost" enctype="multipart/form-data">
         <div asp-validation-summary="ModelOnly"></div>
         <div>
             <label asp-for="PublicationName"></label><br />
-            <input asp-for="PublicationName" />
+            <input asp-for="PublicationName" maxlength="40" />
             <span asp-validation-for="PublicationName"></span>
         </div>
         <div>
             <label asp-for="Discription"></label><br />
-            <input asp-for="Discription" />
+            <input asp-for="Discription" maxlength="110" />
             <span asp-validation-for="Discription"></span>
         </div>
         <div>
